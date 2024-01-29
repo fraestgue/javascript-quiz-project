@@ -19,7 +19,12 @@ class Quiz {
     }
 
     shuffleQuestions() {
-        return this.questions; // REVISAR
+        
+        for (let i = this.questions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
+        }
+        return this.questions;  // REVISAR
     }
 
     checkAnswer(answer) {
