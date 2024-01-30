@@ -307,6 +307,8 @@ describe("Quiz", () => {
 
       // 2. Check if the .filterQuestionsByDifficulty is a function
       expect(quizTest.filterQuestionsByDifficulty).toBe(Function)
+
+      // REVISAR
     });
 
     it("should receive 1 argument (difficulty)", () => {
