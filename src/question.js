@@ -16,7 +16,7 @@ class Question  {
             const j = Math.floor(Math.random() * (i + 1));
             [this.choices[i], this.choices[j]] = [this.choices[j], this.choices[i]];
         }
-        return this.choices;  // REVISAR
+        return this.choices;  
      }
 
 

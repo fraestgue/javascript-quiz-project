@@ -2,9 +2,9 @@ class Quiz {
     // YOUR CODE HERE:
     //
     constructor (questions, timeLimit, timeRemaining) {
-        this.questions = questions;
+        this.questions = questions; // []
         // [ObjetosPregunta1, ObjetoPregunta2]
-        this.timeLimit = timeLimit;
+        this.timeLimit = timeLimit; 
         this.timeRemaining = timeRemaining;
         this.correctAnswers = 0;
         this.currentQuestionIndex = 0;
@@ -24,7 +24,7 @@ class Quiz {
             const j = Math.floor(Math.random() * (i + 1));
             [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
         }
-        return this.questions;  // REVISAR
+        return this.questions;  
     }
 
     checkAnswer(answer) {
@@ -42,4 +42,14 @@ class Quiz {
             return true
         } 
     }
+
+    filterQuestionsByDifficulty(difficulty) {
+        
+        let questionsDifficulty = this.questions.filter((eachQuestions) => {
+            if (difficulty === eachQuestions[this.questions].questions) {
+                return true
+            }
+        }) 
+        return questionsDifficulty;
+    }  
 }
