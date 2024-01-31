@@ -324,7 +324,7 @@ describe("Quiz", () => {
       // 1. Read the above test description to understand what this test should do
 
       // Array with questions to be used in the test and passed to the Quiz constructor
-      const questions = [
+      const questionsTest = [
         {
           text: "Question 1",
           choices: ["a", "b", "c"],
@@ -354,11 +354,11 @@ describe("Quiz", () => {
       // YOUR CODE HERE:
       //
       // 2. Instantiate a new Quiz object with the test questions
-      const quizTest = new Quiz([], "test", 40);
+      const quizTest = new Quiz(questionsTest, "test", 40);
       // 3. Call the `filterQuestionsByDifficulty()` method with a number between 1 and 3 as a 1st argument.
-        quizTest.filterQuestionsByDifficulty(2)
-      // 4. Check if the questions array has been filtered correctly
-      expect(quizTest.filterQuestionsByDifficulty).toBe("true")
+        quizTest.filterQuestionsByDifficulty(3)
+      // 4. Check if the questions array has{ been filtered correctly
+      expect(quizTest.questions[0].text).toBe("Question 4")
     });
 
     it("should not change the 'questions' array if the 1st argument is not a number between 1 and 3", () => {
@@ -502,41 +502,10 @@ describe("Quiz", () => {
       // YOUR CODE HERE:
       //
       // 1. Instantiate a new Quiz object with the test questions
-      const quizTest = new Quiz ([
-        {
-          text: "Question 1",
-          choices: ["a", "b", "c"],
-          answer: "a",
-          difficulty: 1,
-        },
-        {
-          text: "Question 2",
-          choices: ["d", "e", "f"],
-          answer: "d",
-          difficulty: 2,
-        },
-        {
-          text: "Question 3",
-          choices: ["g", "h", "i"],
-          answer: "g",
-          difficulty: 2,
-        },
-        {
-          text: "Question 4",
-          choices: ["j", "k", "l"],
-          answer: "j",
-          difficulty: 1,
-        },
-        {
-          text: "Question 5",
-          choices: ["m", "n", "o"],
-          answer: "m",
-          difficulty: 3,
-        },
-      ], "test", 60);
+      const quizTest = new Quiz (questions, "test", 60);
 
       // 2. Check that the averageDifficulty() method returns the correct average when called
-      expect(quizTest.averageDifficulty).toEqual(1.8)
+      expect(quizTest.averageDifficulty()).toEqual(1.8)
 
     });
   });
