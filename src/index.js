@@ -53,8 +53,32 @@ document.addEventListener("DOMContentLoaded", () => {
     ),
     new Question(
       "Quién sufre más haciendo los LABS?",
-      ["Meri", "Josep", "Fran", "Todas son correctas"],
+      ["Meri", "Josep", "Fran", "Adri", "Pablo", "Todas son correctas"],
       "Todas son correctas",
+      1
+    ),
+    new Question(
+      "Cómo se llama la gata de Fran?",
+      ["Duna", "Dama", "Dory", "Diana"],
+      "Dama",
+      3
+    ),
+    new Question(
+      "¿Quién estaba enamorado de la madre de Harry Potter?",
+      ["Sirius Black", "Dumbledore", "Hagrid", "Snape"],
+      "Snape",
+      2
+    ),
+    new Question(
+      "'Hazlo o no lo hagas, pero no lo intentes'. ¿Quién dijo esta frase?",
+      ["Yoda", "Obi-Wan Kenobi", "Leia", "C3-PO"],
+      "Yoda",
+      2
+    ),
+    new Question(
+      "¿Quién mató a Joffrey Baratheon?",
+      ["Lady Olenna", "Tyrion Lannister", "Rob Stark", "Sansa Stark"],
+      "Lady Olenna",
       1
     ),
   ];
@@ -76,15 +100,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
 
   // Display the time remaining in the time remaining container
-  const timeRemainingContainer = document.getElementById("timeRemaining");
-  timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+  //const timeRemainingContainer = document.getElementById("timeRemaining");
+  //timeRemainingContainer.innerText = `${minutes}:${seconds}`;
 
   // Show first question
   showQuestion();
 
   /************  TIMER  ************/
 
-  let timer;
+  //let timer = timeRemainingContainer.innerText
+  /*const minutes = Math.floor(quiz.timeRemaining / 60)
+    .toString()
+    .padStart(2, "0");
+  const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");*/
+  
+  const timeRemainingContainer = document.getElementById("timeRemaining");
+  
+  let timerId = setInterval(() => {
+    const minutes = Math.floor(quiz.timeRemaining / 60)
+    .toString()
+    .padStart(2, "0");
+  const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+  timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+
+   if (quiz.timeRemaining === 0) {
+    clearInterval(timerId);
+    showResults()
+   }
+   quiz.timeRemaining -= 1
+   console.log("ejecutando el intervalo", quiz.timeRemaining)
+  }, 1000)
+//console.log("ejecutando el intervalo", quiz.timeRemaining)
 
   /************  EVENT LISTENERS  ************/
 
@@ -231,7 +277,9 @@ function nextButtonHandler() {
 
   function showResults() {
     // YOUR CODE HERE:
-    //
+    
+    clearInterval(timerId);
+
     // 1. Hide the quiz view (div#quizView)
     quizView.style.display = "none";
 
@@ -252,9 +300,11 @@ function restartQuiz () {
 }
 
 function resetQuiz () {
-  showQuestion();
+  showQuestion(); //NOS DA ERROR, DICE QUE NO ESTÁ DEFINIDO
   nextButtonHandler();
   showResults();
+
+
 }
 
 
