@@ -28,8 +28,10 @@ class Quiz {
     }
 
     checkAnswer(answer) {
+        console.log(answer, this.questions[this.currentQuestionIndex].answer)
         if (this.questions[this.currentQuestionIndex].answer === answer ) {
-            return this.correctAnswers += 1;
+            this.correctAnswers += 1;
+            console.log(this.correctAnswers)
         }
     }
 
